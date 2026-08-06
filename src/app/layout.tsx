@@ -7,7 +7,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import { profile } from "@/lib/data";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://spandana-portfolio.vercel.app"),
+  metadataBase: new URL("https://spandana-portfolio-ivory.vercel.app"),
   title: `${profile.name} — Software Engineer`,
   description:
     "Portfolio of Murala Chinni Spandana — Software Engineer, Full Stack Developer & Cybersecurity enthusiast. React, Node.js, Spring Boot, Java, AI/ML.",
@@ -23,15 +23,28 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: profile.name }],
   openGraph: {
-    title: `${profile.name} — Software Engineer`,
-    description: "Full Stack Developer, Backend Engineer & AI enthusiast. Explore my projects, experience, and skills.",
-    type: "website",
-  },
+  title: `${profile.name} — Software Engineer`,
+  description:
+    "Full Stack Developer, Backend Engineer & AI enthusiast. Explore my projects, experience, and skills.",
+  url: "https://spandana-portfolio-ivory.vercel.app",
+  siteName: `${profile.name} — Portfolio`,
+  type: "website",
+  locale: "en_IN",
+  images: [
+    {
+      url: "/og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Murala Chinni Spandana Portfolio",
+    },
+  ],
+},
   twitter: {
-    card: "summary_large_image",
-    title: `${profile.name} — Software Engineer`,
-    description: "Full Stack Developer, Backend Engineer & AI enthusiast.",
-  },
+  card: "summary_large_image",
+  title: `${profile.name} — Software Engineer`,
+  description: "Full Stack Developer, Backend Engineer & AI enthusiast.",
+  images: ["/og-image.png"],
+},
   robots: { index: true, follow: true },
 };
 
