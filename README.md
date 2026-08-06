@@ -1,67 +1,157 @@
-# Murala Chinni Spandana — Portfolio
+# 🌐 Spandana Murala | Developer Portfolio
 
-A premium, animated Software Engineer portfolio built with Next.js 15, React 19, TypeScript, Tailwind CSS v4, Framer Motion, GSAP, React Three Fiber, and Lenis smooth scroll.
+A modern developer portfolio showcasing my projects, technical skills, internships, and experience in Software Engineering, Full Stack Development, Artificial Intelligence, and Cybersecurity.
 
-## Quick start
+## 🚀 Live Website
+
+👉 **https://spandana-portfolio-ivory.vercel.app/**
+
+---
+
+## 📸 Portfolio Preview
+
+![Portfolio Preview](public/github-preview.png)
+
+---
+
+## ✨ Features
+
+- Responsive Design
+- Dark & Light Mode
+- Animated UI using Framer Motion
+- Interactive Skills Section
+- Featured Projects
+- GitHub Integration
+- Resume Download
+- Contact Form with EmailJS
+
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| UI | React 19 |
+| Styling | Tailwind CSS v4 |
+| Animation | Framer Motion, GSAP |
+| 3D | Three.js via React Three Fiber |
+| Scrolling | Lenis |
+| Icons | react-icons |
+| Email | EmailJS |
+| Hosting | Vercel |
+
+---
+
+## Running locally
+
+Requires Node.js 18.18 or newer.
 
 ```bash
+git clone https://github.com/spandana162/spandana-portfolio.git
+cd portfolio
 npm install
 npm run dev
 ```
 
 Open http://localhost:3000.
 
-## Deploy to Vercel
+### Environment variables
 
-```bash
-npx vercel
+Copy `.env.local.example` to `.env.local` and fill in your EmailJS credentials:
+
+```
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=
 ```
 
-Or connect the repo at vercel.com/new — zero config needed, it's a standard Next.js App Router project.
+Without these the contact form still works — it falls back to opening the visitor's mail client and copying the message to their clipboard.
 
-## Before you ship this — things to configure
+### Scripts
 
-This was built from your resume, internship report, and the 5 real project decks/poster you provided, with real screenshots extracted from those files. A few things are intentionally left as placeholders for you to fill in:
+```bash
+npm run dev     # development server
+npm run build   # production build
+npm run start   # serve the production build
+```
 
-1. **Résumé PDF** — drop your actual `resume.pdf` into `/public/resume.pdf`. The "Download Resume" buttons link to `/resume.pdf`.
-2. **EmailJS** — copy `.env.local.example` to `.env.local` and fill in your Service ID / Template ID / Public Key from emailjs.com. Until configured, the contact form falls back to opening the visitor's email client instead of sending directly.
-3. **Project GitHub/demo links** — every "View Code" button currently points to your GitHub profile (`github.com/spandana162`) because I don't have the individual repo URLs. Open `src/lib/data.ts` and set the exact `github` (and `demo`, if you have one) URL per project.
-4. **Testimonials** — the Testimonials section ships with clearly-labeled placeholder cards. Real quotes from a manager, mentor, or professor will carry far more weight than anything fabricated — swap them in `src/lib/data.ts`.
-5. **Company logos** — Experience section uses a generic icon instead of real IBaseIT/SkillDzire logos (I didn't have licensed assets for them). Drop logo files into `/public` and swap the icon for an `<Image>` if you have them.
+---
 
-## About the hero visual
-
-You asked for a realistic 3D scene of a girl coding at a desk — that's a full 3D character/asset-modeling job (rigging, texturing, lighting) that isn't realistic to hand-build from scratch in code. Instead, the hero uses a genuinely interactive R3F/Three.js particle + distorted-blob background plus a stylized animated "workspace" mockup (glass IDE card, terminal, floating tech badges) built in CSS/SVG. If you later commission or generate a 3D character asset (`.glb`/`.gltf`), it can be dropped straight into `HeroScene.tsx` alongside the existing scene.
-
-## Project screenshots
-
-Real screenshots were extracted from your uploaded presentations/poster into `/public/projects/<slug>/`:
-- **AI Interview Practice Platform** — from `min1fp.pptx`
-- **AgriCare** — from `D7_Review4_21-02-2026.pptx`
-- **LostNFound** — from `Mini_Project3_review1.pptx`
-- **Customer Segmentation** — from `Customer_Segmentation.pptx`
-- **Trash Tracker** — from your poster photo
-
-These were built by a 5-person team for academic project reviews (SVECW) — the project pages note this ("Team project") rather than implying solo authorship.
-
-## Tech stack
-
-Next.js 15 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion · GSAP + ScrollTrigger · React Three Fiber + drei · Lenis · @emailjs/browser · react-icons · cmdk (command palette)
-
-## Structure
+## Project structure
 
 ```
 src/
-  app/            # routes: / , /projects/[slug], sitemap, robots
-  components/      # all UI sections + providers
-  lib/data.ts      # ALL content lives here — edit this file to update copy
-  types/r3f.d.ts   # React 19 + React Three Fiber JSX typing shim
+  app/
+    layout.tsx           root layout, fonts, metadata
+    page.tsx             single-page composition
+    projects/[slug]/     generated case-study pages
+    sitemap.ts           generated sitemap
+    robots.ts            generated robots.txt
+  components/
+    Hero.tsx             split-screen hero
+    HeroPortrait.tsx     animated portrait and orbiting icons
+    BrandLogo.tsx        animated brand mark
+    ...                  one component per section
+    providers/           theme and smooth-scroll providers
+  lib/
+    data.ts              ALL site content lives here
+    utils.ts             shared helpers
 public/
-  projects/        # real screenshots per project
+  images/                portrait assets
+  projects/              per-project screenshots
+  resume.pdf             downloadable résumé
 ```
 
-## Notes
+**To change any text on the site, edit `src/lib/data.ts`.** Content is deliberately separated from presentation so copy changes never require touching a component.
 
-- Command palette: `Ctrl/Cmd + K`.
-- Dark/light mode toggle in the navbar (persisted to localStorage).
-- All animations respect standard performance practices (dynamic import for the R3F canvas, `viewport once` for scroll reveals) but there's no substitute for running Lighthouse yourself post-deploy to confirm real-world scores.
+---
+
+## Featured projects
+
+| Project | Stack | Focus |
+|---|---|---|
+| Gesture Math Solver | Python, OpenCV, MediaPipe | Real-time computer vision, threading, safe expression evaluation |
+| AI Interview Platform | React, Node.js, Express, MongoDB | Role-based access control, LLM integration |
+| AgriCare | Python, TensorFlow, CNN | Transfer learning, explainable predictions via Grad-CAM |
+| Trash Tracker | Flutter, Supabase | Real-time location sync across multiple apps |
+| LostNFound | PHP, MySQL | Relational schema design and query optimisation |
+
+---
+
+## Deployment
+
+Deployed on Vercel. Every push to `main` triggers a production build automatically.
+
+```bash
+npm run build   # verify locally first
+git push        # Vercel builds and deploys
+```
+
+---
+
+## Development notes
+
+This project was built with AI assistance for scaffolding and boilerplate, then reviewed, modified and extended by me. Specific problems I worked through:
+
+- **Light theme was unreadable.** Components used hard-coded `text-white`, which stays white on a white background. Fixed by routing every colour through CSS custom properties that are redefined under `html.light`, so utilities flip automatically.
+- **Contact form appeared to do nothing.** With EmailJS unconfigured it silently opened a `mailto:` link, which does nothing if no desktop mail client is installed. Now always renders a visible confirmation and copies the message to the clipboard.
+- **GitHub stat cards rendered as broken images.** The upstream card service rate-limits aggressively. Added explicit load and error states with a link-out fallback.
+- **Hydration mismatch in the hero.** Particle positions were generated with `Math.random()` during render, producing different markup on server and client. Moved generation into `useEffect`.
+
+---
+
+## Licence
+
+MIT — see [LICENSE](LICENSE).
+
+The MIT licence covers the source code. My photograph, résumé and personal branding are not covered; please do not reuse those.
+
+---
+
+## Contact
+
+**Murala Chinni Spandana**
+
+- Email: mcspandana12@gmail.com
+- LinkedIn: [spandana-murala](https://linkedin.com/in/spandana-murala)
+- GitHub: [spandana162](https://github.com/spandana162)
