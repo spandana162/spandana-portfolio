@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --color-bg: #05050a;
+  --color-bg-soft: #0a0a14;
+  --color-surface: #0d0d18;
+  --color-surface-2: #12121f;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-soft: rgba(255, 255, 255, 0.04);
+
+  --color-ink: #f4f4f8;
+  --color-ink-dim: #9797ab;
+  --color-ink-dimmer: #5c5c70;
+
+  --color-violet: #8b5cf6;
+  --color-blue: #3b82f6;
+  --color-cyan: #22d3ee;
+  --color-pink: #ec4899;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 10s ease-in-out infinite;
+  --animate-spin-slow: spin 12s linear infinite;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-blob: blob 12s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(3deg); }
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes blob {
+    0%, 100% { border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%; transform: scale(1); }
+    33% { border-radius: 60% 40% 30% 70% / 55% 65% 35% 45%; transform: scale(1.05); }
+    66% { border-radius: 35% 65% 55% 45% / 40% 50% 50% 60%; transform: scale(0.97); }
+  }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Light theme: redefine the same custom properties Tailwind's utilities read,
+   so text-ink / bg-surface / border-border all flip with no markup changes. */
+html.light {
+  color-scheme: light;
+
+  --color-bg: #f6f7fb;
+  --color-bg-soft: #eef1f7;
+  --color-surface: #ffffff;
+  --color-surface-2: #f2f4f9;
+  --color-border: rgba(15, 23, 42, 0.10);
+  --color-border-soft: rgba(15, 23, 42, 0.06);
+
+  --color-ink: #0f172a;
+  --color-ink-dim: #475569;
+  --color-ink-dimmer: #7c8698;
+
+  --color-violet: #7c3aed;
+  --color-blue: #2563eb;
+  --color-cyan: #0891b2;
+  --color-pink: #db2777;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+}
+
+html.light body {
+  background: #f7f7fb;
+  color: #0e0e16;
+}
+
+::selection {
+  background: var(--color-violet);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-violet), var(--color-cyan));
+  border-radius: 10px;
+  border: 2px solid var(--color-bg);
+}
+
+/* ---------- reusable utility classes ---------- */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html.light .glass {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05), 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+/* Utilities that hard-code white break in light mode, so route them through
+   the flipping variables instead. */
+.surface-tint {
+  background-color: color-mix(in srgb, var(--color-ink) 4%, transparent);
+}
+.surface-tint-strong {
+  background-color: color-mix(in srgb, var(--color-ink) 7%, transparent);
+}
+.hairline {
+  border-color: var(--color-border);
+}
+
+html.light ::selection {
+  background: var(--color-violet);
+  color: #ffffff;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+/* The video/preview surfaces stay dark in both themes for contrast. */
+html.light .force-dark {
+  background: #0d0d18;
+  color: #f4f4f8;
+}
+
+.text-gradient {
+  background-image: linear-gradient(110deg, var(--color-violet) 10%, var(--color-blue) 45%, var(--color-cyan) 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-animate {
+  background-image: linear-gradient(110deg, var(--color-violet) 10%, var(--color-blue) 35%, var(--color-cyan) 60%, var(--color-violet) 90%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+.glow-violet {
+  box-shadow: 0 0 60px -10px rgba(139, 92, 246, 0.45);
+}
+.glow-cyan {
+  box-shadow: 0 0 60px -10px rgba(34, 211, 238, 0.4);
+}
+
+.noise {
+  position: relative;
+}
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.container-px {
+  padding-left: max(1.5rem, env(safe-area-inset-left));
+  padding-right: max(1.5rem, env(safe-area-inset-right));
+}
+
+.section-pad {
+  padding-top: clamp(5rem, 10vw, 8rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+}
+
+.mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.custom-cursor,
+.custom-cursor-ring {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor,
+  .custom-cursor-ring {
+    display: block;
+  }
+  body {
+    cursor: none;
+  }
+  a, button, [role="button"] {
+    cursor: none;
+  }
+}
+
+/* Utilities that need a theme variable plus alpha. Written as plain CSS because
+   Tailwind cannot apply an opacity modifier to an arbitrary var() value. */
+.nav-bar-bg {
+  background-color: color-mix(in srgb, var(--color-bg) 80%, transparent);
+}
+.nav-panel-bg {
+  background-color: color-mix(in srgb, var(--color-bg) 95%, transparent);
+}
+.dot-bg {
+  background-color: var(--color-bg);
+}
+.spinner-ring {
+  border-color: var(--color-border);
+  border-top-color: var(--color-cyan);
+}
+.link-cyan {
+  color: var(--color-cyan);
+}
+.link-cyan:hover {
+  border-color: var(--color-cyan);
+}
