@@ -112,7 +112,7 @@ export const experience = [
 export const education = {
   school: "SVECW, Bhimavaram",
   degree: "B.Tech in Computer Science & Engineering (Cybersecurity)",
-  period: "Aug 2022 — Jun 2026",
+  period: "Oct 2022 — Apr 2026",
   cgpa: "8.85 / 10",
   cgpaPct: 0.885,
   coursework: [
