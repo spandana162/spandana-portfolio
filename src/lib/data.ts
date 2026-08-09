@@ -30,7 +30,7 @@ export const profile = {
   github: "https://github.com/spandana162",
   githubUsername: "spandana162",
   linkedin: "https://linkedin.com/in/spandana-murala",
-  resumeUrl: "/RESUMEEE.pdf", // PLACEHOLDER: drop your resume.pdf into /public
+  resumeUrl: "/RESUME_spandana___.pdf", // PLACEHOLDER: drop your resume.pdf into /public
   bio: [
     "I'm a Computer Science (Cybersecurity) student who builds software from both sides of the fence — as a developer shipping full-stack features, and as a penetration tester trying to break them. That combination shapes how I work: I design systems assuming they'll be attacked, and I test systems with the structured, algorithmic thinking I'd use to solve a DSA problem.",
     "My hands-on experience spans Java and Spring Boot on the backend, React and Node.js on the front, and SQL/MongoDB for data — plus applied AI work in TensorFlow and OpenCV, and security tooling like Burp Suite. I've cut API response times by rewriting slow queries, caught real access-control gaps before they shipped, and built AI systems that hit 98% classification accuracy.",
