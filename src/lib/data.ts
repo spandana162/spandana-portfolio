@@ -237,6 +237,41 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "salesforce-recruitment-app",
+    title: "Recruitment Management App (Salesforce)",
+    tagline: "Hiring tracker on Salesforce with validation rules, Flow automation and a dashboard",
+    overview:
+      "A recruitment tracker built on the Salesforce Platform with point-and-click tools. It tracks open Positions, Candidates and Job Applications, blocks bad data with validation rules, emails the hiring manager whenever an application's status changes, and closes the Position automatically when someone is hired. A dashboard shows how many applications sit at each hiring stage.",
+    problem:
+      "Hiring tracked in spreadsheets and email loses information: managers miss status changes, candidates get marked as hired without an offer, and filled positions stay listed as open.",
+    solution:
+      "Designed three custom objects with Job Application as the junction — Master-Detail to Position (an application can't exist without one) and Lookup to Candidate (a candidate can apply to many positions). Added validation rules using ISPICKVAL, ISNEW, ISCHANGED and PRIORVALUE, and a record-triggered after-save Flow that sends the email and updates the parent Position when the status becomes Hired.",
+    tech: ["Salesforce", "Custom Objects", "Flow Builder", "Validation Rules", "Reports & Dashboards"],
+    features: [
+      "Custom objects: Position, Candidate, Job Application (auto-numbered JA-0001)",
+      "Master-Detail and Lookup relationships",
+      "3 validation rules, e.g. a candidate must be Offered before Hired",
+      "Record-triggered Flow emails the hiring manager on every status change",
+      "Position auto-closes when a candidate is Hired",
+      "Hiring Dashboard showing applications by stage",
+    ],
+    team: "Solo project — built in a Salesforce Developer Edition org",
+    challenges: [
+      "Blocking 'Hired' without a prior 'Offered' status needed PRIORVALUE, and also had to cover records created directly as Hired (ISNEW).",
+      "The Flow updates a different record (the parent Position), so it had to run after save instead of as a fast field update.",
+    ],
+    learnings: [
+      "When to use Master-Detail vs Lookup, and how each behaves on delete.",
+      "Entry conditions like 'Is Changed' stop a Flow from running on every edit and sending duplicate emails.",
+    ],
+    github: "https://github.com/spandana162/salesforce-recruitment-app",
+    featured: true,
+    metric: "5/5 test scenarios passing",
+    images: [
+      { src: "/projects/salesforce-recruitment/hiring-dashboard.jpg", caption: "Hiring Dashboard — applications by stage" },
+    ],
+  },
+  {
     slug: "trash-tracker",
     title: "Trash Tracker",
     tagline: "Real-time smart waste-collection platform",
